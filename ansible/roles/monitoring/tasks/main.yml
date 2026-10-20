@@ -7,6 +7,8 @@
   loop:
     - "{{ monitoring_dir }}"
     - "{{ monitoring_dir }}/prometheus"
+    - "{{ monitoring_dir }}/grafana/provisioning"
+    - "{{ monitoring_dir }}/grafana/dashboards"
 
 - name: "Copy prometheus config"
   ansible.builtin.copy:
@@ -14,6 +16,25 @@
     dest: "{{ monitoring_dir }}/prometheus/prometheus.yml"
     mode: "0644"
   notify: Restart prometheus
+
+- name: "Copy grafana provisioning"
+  ansible.builtin.copy:
+    src: grafana/provisioning/
+    dest: "{{ monitoring_dir }}/grafana/provisioning/"
+    mode: "0644"
+  notify: Restart grafana
+
+- name: "Build grafana dashboards"
+  ansible.builtin.command: make -C {{ grafana_src_dir }}
+  delegate_to: localhost
+  run_once: true
+  changed_when: false
+
+- name: "Copy grafana dashboards"
+  ansible.builtin.copy:
+    src: "{{ grafana_src_dir }}/build/"
+    dest: "{{ monitoring_dir }}/grafana/dashboards/"
+    mode: "0644"
 
 - name: "Copy docker-compose.yml"
   ansible.builtin.copy:

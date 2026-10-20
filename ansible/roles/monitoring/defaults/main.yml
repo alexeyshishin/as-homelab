@@ -1,2 +1,3 @@
 ---
 monitoring_dir: /opt/monitoring
+grafana_src_dir: "{{ playbook_dir }}/../../grafana"
