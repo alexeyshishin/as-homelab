@@ -39,7 +39,7 @@ g.dashboard.new('Main')
   + timeSeries.gridPos.withH(5)
   + timeSeries.fieldConfig.defaults.custom.withFillOpacity(50),
 
-  gauge.new('Memory usage')
+  gauge.new('Memory Utilization')
   + gauge.queryOptions.withDatasource(cfg.datasourceType, cfg.datasourceType)
   + gauge.queryOptions.withTargets([
     prom('node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100'),
