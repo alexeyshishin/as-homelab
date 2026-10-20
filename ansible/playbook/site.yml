@@ -1,0 +1,6 @@
+---
+- name: "Docker configuration"
+  hosts: docker_hosts
+  roles:
+  - docker
+  - monitoring
