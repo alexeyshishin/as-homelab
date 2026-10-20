@@ -5,6 +5,7 @@
 ### На момент 18.10.2026 есть:
 
 - 1 mini-PC Dell Optiplex 3060 i3 8100t, 16 GB RAM, 256 GB SSD
+- Ansible плейбук, в котором устанавливается docker + docker-compose, а также простой стек мониторинга (Grafana + Prometheus + Node Exporter)
 
 ### Планы:
 
