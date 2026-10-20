@@ -16,16 +16,16 @@ g.dashboard.new('Main')
   g.panel.row.new('Node health')
   + g.panel.row.gridPos.withY(0),
 
-  stat.new('Server Uptime')
-  + stat.queryOptions.withDatasource(cfg.datasourceType, cfg.datasourceType)
-  + stat.queryOptions.withTargets([
+  timeSeries.new('Server Uptime')
+  + timeSeries.queryOptions.withDatasource(cfg.datasourceType, cfg.datasourceType)
+  + timeSeries.queryOptions.withTargets([
     prom('node_time_seconds - node_boot_time_seconds'),
   ])
-  + stat.standardOptions.withUnit('s')
-  + stat.gridPos.withX(0)
-  + stat.gridPos.withY(1)
-  + stat.gridPos.withW(12)
-  + stat.gridPos.withH(5),
+  + timeSeries.standardOptions.withUnit('s')
+  + timeSeries.gridPos.withX(0)
+  + timeSeries.gridPos.withY(1)
+  + timeSeries.gridPos.withW(12)
+  + timeSeries.gridPos.withH(5),
 
   timeSeries.new('CPU usage')
   + timeSeries.queryOptions.withDatasource(cfg.datasourceType, cfg.datasourceType)

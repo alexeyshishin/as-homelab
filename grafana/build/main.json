@@ -40,7 +40,7 @@
             }
          ],
          "title": "Server Uptime",
-         "type": "stat"
+         "type": "timeseries"
       },
       {
          "datasource": {
