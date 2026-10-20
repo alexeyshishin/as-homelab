@@ -99,10 +99,10 @@
                   "type": "prometheus",
                   "uid": "prometheus"
                },
-               "expr": "node_memory_Available_bytes / node_memory_MemTotal_bytes * 100"
+               "expr": "node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100"
             }
          ],
-         "title": "Memory usage",
+         "title": "Memory Utilization",
          "type": "gauge"
       }
    ],
