@@ -36,6 +36,25 @@
     dest: "{{ monitoring_dir }}/grafana/dashboards/"
     mode: "0644"
 
+- name: "List built grafana dashboards"
+  ansible.builtin.find:
+    paths: "{{ grafana_src_dir }}/build"
+    patterns: "*.json"
+  delegate_to: localhost
+  register: grafana_built_dashboards
+
+- name: "List deployed grafana dashboards"
+  ansible.builtin.find:
+    paths: "{{ monitoring_dir }}/grafana/dashboards"
+    patterns: "*.json"
+  register: grafana_deployed_dashboards
+
+- name: "Remove stale grafana dashboards"
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop: "{{ grafana_deployed_dashboards.files | map(attribute='path') | map('basename') | difference(grafana_built_dashboards.files | map(attribute='path') | map('basename')) | map('regex_replace', '^', monitoring_dir ~ '/grafana/dashboards/') | list }}"
+
 - name: "Copy docker-compose.yml"
   ansible.builtin.copy:
     src: docker-compose.yml
