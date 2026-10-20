@@ -4,6 +4,7 @@ local g = import 'grafonnet-latest/main.libsonnet';
 local stat = g.panel.stat;
 local timeSeries = g.panel.timeSeries;
 local gauge = g.panel.gauge;
+local stateTimeline = g.panel.stateTimeline;
 
 local prom(expr) = g.query.prometheus.new(cfg.datasourceType, expr);
 
@@ -16,16 +17,16 @@ g.dashboard.new('Main')
   g.panel.row.new('Node health')
   + g.panel.row.gridPos.withY(0),
 
-  timeSeries.new('Server Uptime')
-  + timeSeries.queryOptions.withDatasource(cfg.datasourceType, cfg.datasourceType)
-  + timeSeries.queryOptions.withTargets([
+  stateTimeline.new('Server Uptime')
+  + stateTimeline.queryOptions.withDatasource(cfg.datasourceType, cfg.datasourceType)
+  + stateTimeline.queryOptions.withTargets([
     prom('node_time_seconds - node_boot_time_seconds'),
   ])
-  + timeSeries.standardOptions.withUnit('s')
-  + timeSeries.gridPos.withX(0)
-  + timeSeries.gridPos.withY(1)
-  + timeSeries.gridPos.withW(12)
-  + timeSeries.gridPos.withH(5),
+  + stateTimeline.standardOptions.withUnit('s')
+  + stateTimeline.gridPos.withX(0)
+  + stateTimeline.gridPos.withY(1)
+  + stateTimeline.gridPos.withW(12)
+  + stateTimeline.gridPos.withH(5),
 
   timeSeries.new('CPU usage')
   + timeSeries.queryOptions.withDatasource(cfg.datasourceType, cfg.datasourceType)
