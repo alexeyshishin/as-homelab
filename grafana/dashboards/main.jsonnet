@@ -27,7 +27,7 @@ g.dashboard.new('Main')
   + stat.gridPos.withW(12)
   + stat.gridPos.withH(5),
 
-  timeSeries.new('CPU Utilization')
+  timeSeries.new('CPU usage')
   + timeSeries.queryOptions.withDatasource(cfg.datasourceType, cfg.datasourceType)
   + timeSeries.queryOptions.withTargets([
     prom('100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100)'),
@@ -39,10 +39,10 @@ g.dashboard.new('Main')
   + timeSeries.gridPos.withH(5)
   + timeSeries.fieldConfig.defaults.custom.withFillOpacity(50),
 
-  gauge.new('Memory Utilization')
+  gauge.new('Memory usage')
   + gauge.queryOptions.withDatasource(cfg.datasourceType, cfg.datasourceType)
   + gauge.queryOptions.withTargets([
-    prom('node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100'),
+    prom('100 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100)'),
   ])
   + gauge.standardOptions.withUnit('percent')
   + gauge.gridPos.withX(0)
