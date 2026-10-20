@@ -70,7 +70,7 @@
             }
          ],
          "title": "CPU load",
-         "type": "stat"
+         "type": "timeseries"
       }
    ],
    "refresh": "30s",
