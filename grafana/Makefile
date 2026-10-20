@@ -2,6 +2,7 @@ SRC := $(wildcard dashboards/*.jsonnet)
 OUT := $(patsubst dashboards/%.jsonnet,build/%.json,$(SRC))
 
 .PHONY: all deps fmt check clean
+.DELETE_ON_ERROR:
 
 all: $(OUT)
 
