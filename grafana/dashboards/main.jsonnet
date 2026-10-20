@@ -42,7 +42,7 @@ g.dashboard.new('Main')
   gauge.new('Memory usage')
   + gauge.queryOptions.withDatasource(cfg.datasourceType, cfg.datasourceType)
   + gauge.queryOptions.withTargets([
-    prom('node_memory_Available_bytes / node_memory_MemTotal_bytes * 100'),
+    prom('node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes * 100'),
   ])
   + gauge.standardOptions.withUnit('percent')
   + gauge.gridPos.withX(0)
