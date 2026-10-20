@@ -72,8 +72,38 @@
                "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)"
             }
          ],
-         "title": "CPU load",
+         "title": "CPU Utilization",
          "type": "timeseries"
+      },
+      {
+         "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+         },
+         "fieldConfig": {
+            "defaults": {
+               "unit": "percent"
+            }
+         },
+         "gridPos": {
+            "h": 5,
+            "w": 12,
+            "x": 0,
+            "y": 6
+         },
+         "id": 4,
+         "pluginVersion": "v13.0.0",
+         "targets": [
+            {
+               "datasource": {
+                  "type": "prometheus",
+                  "uid": "prometheus"
+               },
+               "expr": "node_memory_Available_bytes / node_memory_MemTotal_bytes * 100"
+            }
+         ],
+         "title": "Memory usage",
+         "type": "gauge"
       }
    ],
    "refresh": "30s",
