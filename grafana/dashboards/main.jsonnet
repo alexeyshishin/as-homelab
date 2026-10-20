@@ -37,6 +37,5 @@ g.dashboard.new('Main')
   + timeSeries.gridPos.withY(1)
   + timeSeries.gridPos.withW(12)
   + timeSeries.gridPos.withH(5)
-  + timeSeries.standardOptions.withLegend(g.panel.legend.new().withShow(true).withValues(true).withMin(true).withMax(true).withAvg(true).withCurrent(true))
   + timeSeries.fieldConfig.defaults.custom.withFillOpacity(50),
 ])

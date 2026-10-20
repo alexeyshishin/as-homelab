@@ -49,6 +49,9 @@
          },
          "fieldConfig": {
             "defaults": {
+               "custom": {
+                  "fillOpacity": 50
+               },
                "unit": "percent"
             }
          },
